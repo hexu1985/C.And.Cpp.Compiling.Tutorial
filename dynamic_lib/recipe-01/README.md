@@ -9,3 +9,6 @@
 $ gcc -fPIC -c first.c second.c
 $ gcc -shared first.o second.o -o libdynamiclib.so
 ```
+
+#### 参考资料:
+《高级C/C++编译技术》: 6.1章节
