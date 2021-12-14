@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "mylibexports.h"
+#include "mydynamiclibexports.h"
 
 int main(int argc, char* argv[])
 {

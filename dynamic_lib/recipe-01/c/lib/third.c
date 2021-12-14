@@ -1,4 +1,4 @@
-#include "mylibexports.h"
+#include "mydynamiclibexports.h"
 
 int third_function(int x)
 {

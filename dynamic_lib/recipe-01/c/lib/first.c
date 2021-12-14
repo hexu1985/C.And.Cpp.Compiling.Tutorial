@@ -1,4 +1,4 @@
-#include "mylibexports.h"
+#include "mydynamiclibexports.h"
 
 int first_function(int x)
 {
