@@ -10,5 +10,9 @@ $ gcc -fPIC -c first.c second.c
 $ gcc -shared first.o second.o -o libdynamiclib.so
 ```
 
+### Linux构建过程中库文件定位规则
+
+在Linux中使用-L和-l选项来指定构建过程中库文件的路径。以下列
+
 #### 参考资料:
 《高级C/C++编译技术》: 6.1章节
