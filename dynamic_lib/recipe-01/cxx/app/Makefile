@@ -20,6 +20,6 @@ clean:
 %.o:%.cpp
 	$(CXX) -o $@ -c $< $(CXXFLAGS) $(INCLUDE)
 
-app: main.o
+$(PROGS): main.o
 	$(CXX) -o $@ $^ $(LDFLAGS) $(LDPATH)
 

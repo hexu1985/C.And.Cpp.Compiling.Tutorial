@@ -1,23 +1,27 @@
 # Makefile
 
+CP = cp
 RM = rm -f
 CC = gcc
 CFLAGS = -Wall -g
-INCLUDE = -I../lib
-#LDFLAGS = -Wl,-R../lib -lmydynamiclib
-#LDFLAGS = -Wl,-rpath,../lib -lmydynamiclib
-LDFLAGS = -Wl,-rpath,'$$ORIGIN/../lib' -lmydynamiclib
-LDPATH = -L../lib
+INCLUDE = 
+LDFLAGS = -ldl
+LDPATH = 
 
 PROGS =	app
 
 .PHONY: all
-all: $(PROGS)
+all: $(PROGS) cplib
 	@echo "build OK!"
 
+.PHONY: clean
 clean:
-	$(RM) $(PROGS) *.o
+	$(RM) $(PROGS) *.o *.so
 	@echo "clean OK!"
+
+.PHONY: cplib
+cplib:
+	$(CP) ../lib/libmydynamiclib.so .
 
 %.o:%.c
 	$(CC) -o $@ -c $< $(CFLAGS) $(INCLUDE)

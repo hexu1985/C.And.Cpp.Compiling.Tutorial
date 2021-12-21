@@ -22,6 +22,6 @@ clean:
 %.o:%.c
 	$(CC) -o $@ -c $< $(CFLAGS) $(INCLUDE)
 
-app: main.o
+$(PROGS): main.o
 	$(CC) -o $@ $^ $(LDFLAGS) $(LDPATH)
 
