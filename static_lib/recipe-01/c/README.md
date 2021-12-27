@@ -24,3 +24,15 @@ $ make
 $ make
 ```
 
+3. 基于cmake脚本方式构建程序
+```
+$ cmake -H. -Bbuild     # build为创建的工程目录
+$ cmake --build build   # --build是cmake选项，--build后面跟的命令行参数是工程目录
+```
+或者
+```
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make
+```
