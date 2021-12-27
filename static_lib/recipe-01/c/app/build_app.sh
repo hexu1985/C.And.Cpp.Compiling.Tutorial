@@ -2,4 +2,4 @@
 
 set -x
 gcc -Wall -I ../lib -c main.c
-gcc main.o -L../lib -lmydynamiclib -o app
+gcc main.o -L../lib -lmystaticlib -o app
