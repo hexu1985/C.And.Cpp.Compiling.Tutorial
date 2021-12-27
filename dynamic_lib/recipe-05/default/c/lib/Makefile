@@ -23,8 +23,8 @@ clean:
 $(OBJECTS): %.o: %.c
 	$(CC) -o $@ -c $(CFLAGS) $(INCLUDES) $<
 
-$(STATICLIB): $(OBJECTS)
-	$(AR) $(STATICLIB) $(OBJECTS)
+$(STATICLIB): first.o second.o third.o fourth.o
+	$(AR) $(STATICLIB) $^
 
-$(DYNAMICLIB): $(STATICLIB)
-	$(CREATE_SO) -o $(DYNAMICLIB) $(STATICLIB) $(LDPATH) $(LDFLAGS)
+$(DYNAMICLIB): $(STATICLIB) mydynamiclibshell.o
+	$(CREATE_SO) -o $(DYNAMICLIB) $^ $(LDPATH) $(LDFLAGS)

@@ -36,3 +36,13 @@ $ cd build
 $ cmake ..
 $ make
 ```
+
+由于没加--whole-archive链接器选项的工程，最终app链接mydynamiclib库时会报undefined reference的错误
+```
+main.c:(.text+0x1c): undefined reference to `first_function'
+main.c:(.text+0x29): undefined reference to `second_function'
+main.c:(.text+0x36): undefined reference to `third_function'
+main.c:(.text+0x43): undefined reference to `fourth_function'
+collect2: error: ld returned 1 exit status
+```
+
