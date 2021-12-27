@@ -15,4 +15,4 @@ add_library(mystaticlib STATIC
 
 add_library(mydynamiclib SHARED mydynamiclibshell.c)
 
-target_link_libraries(mydynamiclib PRIVATE mystaticlib)
+target_link_libraries(mydynamiclib PRIVATE -Wl,--whole-archive mystaticlib -Wl,--no-whole-archive)
