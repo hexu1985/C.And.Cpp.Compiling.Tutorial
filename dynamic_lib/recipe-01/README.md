@@ -33,4 +33,4 @@ $ gcc -Wall -fPIC main.cpp -Wl,-L../sharedLib -Wl,-lworkingdemo -o demo
 ```
 
 #### 参考资料:
-《高级C/C++编译技术》: 6.1章节
+《高级C/C++编译技术》: 6.1章节，7.2章节
