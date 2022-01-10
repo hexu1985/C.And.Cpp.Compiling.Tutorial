@@ -77,3 +77,8 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
 
 - 第三部分 (SUMMARY) 前面输出的概要说明。
 
+### 相关连接
+
+[Valgrind memcheck 用法](https://www.jianshu.com/p/78adaba826c3)
+
+[Address Sanitizer 用法](https://www.jianshu.com/p/3a2df9b7c353)
