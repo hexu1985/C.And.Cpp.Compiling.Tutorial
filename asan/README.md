@@ -82,3 +82,5 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
 [Valgrind memcheck 用法](https://www.jianshu.com/p/78adaba826c3)
 
 [Address Sanitizer 用法](https://www.jianshu.com/p/3a2df9b7c353)
+
+[AddressSanitizer Introduction](https://github.com/google/sanitizers/wiki/AddressSanitizer)
