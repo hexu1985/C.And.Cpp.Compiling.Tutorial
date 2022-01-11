@@ -77,6 +77,14 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
 
 - 第三部分 (SUMMARY) 前面输出的概要说明。
 
+### 其他编译选项
+- fsanitize=address : 打开asan内存错误检查
+- fno-omit-frame-pointer : 保留函数调用的帧信息，以便分析函数调用关系
+- fsanitize=undefined : 未定义行为检测
+
+- fsanitize-recover=address : 监测到内存错误后继续执行,输出当前编译的代码文件中的所有地址错误（gcc 6.1/clang 5.0以上支持）。使用时关闭halt_on_error
+ASAN_OPTIONS=halt_on_error=0 ./test
+
 ### 相关连接
 
 [Valgrind memcheck 用法](https://www.jianshu.com/p/78adaba826c3)
@@ -84,3 +92,5 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
 [Address Sanitizer 用法](https://www.jianshu.com/p/3a2df9b7c353)
 
 [AddressSanitizer Introduction](https://github.com/google/sanitizers/wiki/AddressSanitizer)
+
+[AddressSanitizer Build](https://github.com/google/sanitizers/wiki/AddressSanitizerHowToBuild)

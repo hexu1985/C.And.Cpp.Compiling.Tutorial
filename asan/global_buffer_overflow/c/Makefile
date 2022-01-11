@@ -1,7 +1,7 @@
 
 RM = rm -f
 CC = gcc
-CFLAGS = -Wall -g -fsanitize=address -fno-omit-frame-pointer
+CFLAGS = -Wall -g -fsanitize=undefined -fno-omit-frame-pointer
 INCLUDES = 
 LDFLAGS = -lasan 
 LDPATH =
