@@ -2,13 +2,13 @@
 
 如下代码中，访问的位置超出栈上数组array的边界。
 
-```cpp
+```c
 1 #include <stdlib.h>
-2
-3 int main(int argc, char *argv[])
-4 {
-5     int array[100];
-6     return array[100];
+2 
+3 int main(int argc, char **argv) {
+4     int stack_array[100];
+5     stack_array[1] = 0;
+6     return stack_array[argc + 100];  // BOOM
 7 }
 ```
 
@@ -20,32 +20,32 @@
 
 ```
 =================================================================
-==13650==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7ffc487e0ba0 at pc 0x56035a61c9e7 bp 0x7ffc487e09d0 sp 0x7ffc487e09c0
-READ of size 4 at 0x7ffc487e0ba0 thread T0
-    #0 0x56035a61c9e6 in main /home/mackhe/git/C.And.Cpp.Compiling.Tutorial/asan/stack_buffer_overflow/c/stack_buffer_overflow.c:6
-    #1 0x7f0527b37bf6 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21bf6)
-    #2 0x56035a61c839 in _start (/home/mackhe/git/C.And.Cpp.Compiling.Tutorial/asan/stack_buffer_overflow/c/stack_buffer_overflow+0x839)
+==14558==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7ffd615ade04 at pc 0x55c398cadaad bp 0x7ffd615adc30 sp 0x7ffd615adc20
+READ of size 4 at 0x7ffd615ade04 thread T0
+    #0 0x55c398cadaac in main /home/mackhe/git/C.And.Cpp.Compiling.Tutorial/asan/stack_buffer_overflow/c/stack_buffer_overflow.c:6
+    #1 0x7f287a6d1bf6 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21bf6)
+    #2 0x55c398cad899 in _start (/home/mackhe/git/C.And.Cpp.Compiling.Tutorial/asan/stack_buffer_overflow/c/stack_buffer_overflow+0x899)
 
-Address 0x7ffc487e0ba0 is located in stack of thread T0 at offset 432 in frame
-    #0 0x56035a61c929 in main /home/mackhe/git/C.And.Cpp.Compiling.Tutorial/asan/stack_buffer_overflow/c/stack_buffer_overflow.c:4
+Address 0x7ffd615ade04 is located in stack of thread T0 at offset 436 in frame
+    #0 0x55c398cad989 in main /home/mackhe/git/C.And.Cpp.Compiling.Tutorial/asan/stack_buffer_overflow/c/stack_buffer_overflow.c:3
 
   This frame has 1 object(s):
-    [32, 432) 'array' <== Memory access at offset 432 overflows this variable
+    [32, 432) 'stack_array' <== Memory access at offset 436 overflows this variable
 HINT: this may be a false positive if your program uses some custom stack unwind mechanism or swapcontext
       (longjmp and C++ exceptions *are* supported)
 SUMMARY: AddressSanitizer: stack-buffer-overflow /home/mackhe/git/C.And.Cpp.Compiling.Tutorial/asan/stack_buffer_overflow/c/stack_buffer_overflow.c:6 in main
 Shadow bytes around the buggy address:
-  0x1000090f4120: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x1000090f4130: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 f1 f1
-  0x1000090f4140: f1 f1 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x1000090f4150: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x1000090f4160: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-=>0x1000090f4170: 00 00 00 00[f2]f2 00 00 00 00 00 00 00 00 00 00
-  0x1000090f4180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x1000090f4190: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x1000090f41a0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x1000090f41b0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-  0x1000090f41c0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x10002c2adb70: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x10002c2adb80: 00 00 00 00 00 00 00 00 00 00 f1 f1 f1 f1 00 00
+  0x10002c2adb90: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x10002c2adba0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x10002c2adbb0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x10002c2adbc0:[f2]f2 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x10002c2adbd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x10002c2adbe0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x10002c2adbf0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x10002c2adc00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x10002c2adc10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 Shadow byte legend (one shadow byte represents 8 application bytes):
   Addressable:           00
   Partially addressable: 01 02 03 04 05 06 07 
@@ -65,5 +65,5 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
   ASan internal:           fe
   Left alloca redzone:     ca
   Right alloca redzone:    cb
-==13650==ABORTING
+==14558==ABORTING
 ```
