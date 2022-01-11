@@ -5,12 +5,12 @@
 ```cpp
 1 #include <stdlib.h>
 2
-3 int main(int argc, char *argv[])
-4 {
-5     int* array = new int[100];
-6     int res = array[100];
+3 int main(int argc, char **argv) {
+4     int *array = new int[100];
+5     array[0] = 0;
+6     int res = array[argc + 100];  // BOOM
 7     delete [] array;
-8     return array[1];
+8     return res;
 9 }
 ```
 
@@ -22,17 +22,17 @@
 
 ```
 =================================================================
-==21158==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x6140000001d0 at pc 0x561325c218e4 bp 0x7ffc276faa90 sp 0x7ffc276faa80
-READ of size 4 at 0x6140000001d0 thread T0
-    #0 0x561325c218e3 in main /home/mackhe/git/C.And.Cpp.Compiling.Tutorial/asan/heap_buffer_overflow/cxx/heap_buffer_overflow.cpp:6
-    #1 0x7f33803bfbf6 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21bf6)
-    #2 0x561325c217a9 in _start (/home/mackhe/git/C.And.Cpp.Compiling.Tutorial/asan/heap_buffer_overflow/cxx/heap_buffer_overflow+0x7a9)
+==14447==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x6140000001d4 at pc 0x55c4f275e988 bp 0x7ffd1e4c0ed0 sp 0x7ffd1e4c0ec0
+READ of size 4 at 0x6140000001d4 thread T0
+    #0 0x55c4f275e987 in main /home/mackhe/git/C.And.Cpp.Compiling.Tutorial/asan/heap_buffer_overflow/cxx/heap_buffer_overflow.cpp:6
+    #1 0x7f70170f3bf6 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21bf6)
+    #2 0x55c4f275e7f9 in _start (/home/mackhe/git/C.And.Cpp.Compiling.Tutorial/asan/heap_buffer_overflow/cxx/heap_buffer_overflow+0x7f9)
 
-0x6140000001d0 is located 0 bytes to the right of 400-byte region [0x614000000040,0x6140000001d0)
+0x6140000001d4 is located 4 bytes to the right of 400-byte region [0x614000000040,0x6140000001d0)
 allocated by thread T0 here:
-    #0 0x7f338086f608 in operator new[](unsigned long) (/usr/lib/x86_64-linux-gnu/libasan.so.4+0xe0608)
-    #1 0x561325c218a2 in main /home/mackhe/git/C.And.Cpp.Compiling.Tutorial/asan/heap_buffer_overflow/cxx/heap_buffer_overflow.cpp:5
-    #2 0x7f33803bfbf6 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21bf6)
+    #0 0x7f70175a3608 in operator new[](unsigned long) (/usr/lib/x86_64-linux-gnu/libasan.so.4+0xe0608)
+    #1 0x55c4f275e8f2 in main /home/mackhe/git/C.And.Cpp.Compiling.Tutorial/asan/heap_buffer_overflow/cxx/heap_buffer_overflow.cpp:4
+    #2 0x7f70170f3bf6 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21bf6)
 
 SUMMARY: AddressSanitizer: heap-buffer-overflow /home/mackhe/git/C.And.Cpp.Compiling.Tutorial/asan/heap_buffer_overflow/cxx/heap_buffer_overflow.cpp:6 in main
 Shadow bytes around the buggy address:
@@ -66,6 +66,6 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
   ASan internal:           fe
   Left alloca redzone:     ca
   Right alloca redzone:    cb
-==21158==ABORTING
+==14447==ABORTING
 ```
 
