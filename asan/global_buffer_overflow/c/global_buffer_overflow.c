@@ -1,5 +1,3 @@
-#include <stdlib.h>
-
 int global_array[100] = {-1};
 
 int main(int argc, char **argv) {
