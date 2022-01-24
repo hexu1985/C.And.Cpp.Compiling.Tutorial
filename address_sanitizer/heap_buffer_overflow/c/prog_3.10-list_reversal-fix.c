@@ -18,7 +18,7 @@ int main(void)
 	link t, head;
 	int i;
 
-	t = malloc(sizeof(struct node));
+	t = malloc(sizeof(*t));
 	if (t != NULL)
 	{
 		t->item = 1;
@@ -27,7 +27,7 @@ int main(void)
 	head = t;
 	for (i = 2; i < N+1; i++)
 	{
-		t->next = malloc(sizeof(struct node));
+		t->next = malloc(sizeof(*t));
 		if (t->next != NULL)
 		{
 			t = t->next;
