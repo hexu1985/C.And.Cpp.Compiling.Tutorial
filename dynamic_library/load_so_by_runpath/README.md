@@ -48,9 +48,9 @@
 	
 	```
 
-3. 可执行文件中DT_RUNPATH中如果存储了相对路径，装载器并不是将其解释成相对于可执行程序的路径，而是相对于装载器（即应用程序）启动路径（当前工作路径PWD）的相对路径。
+3. 可执行文件中DT_RUNPATH中如果存储了相对路径，装载器并不是将其解释成相对于可执行程序的路径，而是相对于装载器（即应用程序）启动路径（当前工作路径PWD）的相对路径。$ORIGIN是一个特殊的变量，指示实际的可执行文件名。它在运行时解析到可执行文件的位置，在设置RUNPATH时非常有用。
 
-	通过将runpath指定为`$ORIGIN`代表程序目录，需要加单引号，否则会被解释为变量ORIGIN的值。
+	通过将runpath指定为`$ORIGIN`指示程序目录（需要加单引号，否则会被解释为变量ORIGIN的值）。
 	```shell
 	$ gcc main.o -Wl,-rpath,'$ORIGIN/../lib' -L../lib -lmydynamiclib -o app
 	```
@@ -68,6 +68,9 @@
 	    $(CC) -o $@ $^ $(LDFLAGS) $(LDPATH)
 	
 	```
+
+    - 普通示例：trivial目录
+    - origin变量设置：origin目录
 
 4. 在ubuntu18.04上，gcc version: 7.5.0上，加不加`-Wl,--enable-new-dtags`的效果是一样的。
 
