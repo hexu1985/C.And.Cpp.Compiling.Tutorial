@@ -5,8 +5,7 @@ CC = gcc
 CFLAGS = -Wall -g
 INCLUDE = -I../lib
 #LDFLAGS = -Wl,-R../lib -lmydynamiclib
-#LDFLAGS = -Wl,-rpath,../lib -lmydynamiclib
-LDFLAGS = -Wl,-rpath,'$$ORIGIN/../lib' -lmydynamiclib
+LDFLAGS = -Wl,-rpath,../lib -lmydynamiclib
 LDPATH = -L../lib
 
 PROGS =	app
