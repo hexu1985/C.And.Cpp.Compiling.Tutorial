@@ -79,5 +79,6 @@ There is no dynamic section in this file.
 ```
 -static链接器标识构建的可执行程序的确不依赖任何动态库。
 
-
+#### 参考资料:
+《高级C/C++编译技术》: 3.3.2章节
 
