@@ -69,9 +69,6 @@
 	
 	```
 
-    - 普通示例：trivial目录
-    - origin变量设置：origin目录
-
 4. 在ubuntu18.04上，gcc version: 7.5.0上，加不加`-Wl,--enable-new-dtags`的效果是一样的。
 
 5. 是否指定RUNPATH字段，会影响动态库运行时搜素路径的优先级：
