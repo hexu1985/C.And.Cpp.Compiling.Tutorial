@@ -49,7 +49,7 @@ $ perf top
 ```
 其实会出现以下错误画面。
 
-![](img/perf_top_error.png)
+![](./img/perf_top_error.png)
 
 
 kernel.perf_event_paranoid 是用来决定你在没有 root 权限下 (Normal User) 使用 perf 时，你可以取得哪些 event data。默认值是 1 ，你可以输入
@@ -107,7 +107,7 @@ perf top -p $pid
 ```
 应该会得到类似下面的结果：
 
-![](img/perf_computepi_example.png)
+![](./img/perf_computepi_example.png)
 
 默认的 performance event 是 「cycles」，所以这条指令可以分析出消耗 CPU 周期最多的部份，结果显示函数 compute_pi_baseline() 佔了近 99.9％，跟预期一样，此函数是程式中的「热点」！有了一些感觉后，后面会详细一点介绍 perf 用法。
 
@@ -141,7 +141,7 @@ perf top -p $pid
 
 处理器处理一条指令需要分多个步骤完成，比如 fetch 指令，然后完成运算，最后将计算结果输出到总线 (bus) 上。在处理器内部，这可以看作一个三级 pipeline，如下图处理器 pipeline 所示：
 
-![](img/3stage_pipeline.gif)
+![](./img/3stage_pipeline.gif)
 
 指令从左边进入处理器，上图中的 pipeline 有三级，一个时钟周期内可以同时处理三条指令，分別被 pipeline 的不同部分处理。
 
@@ -204,7 +204,7 @@ $ perf help <command>
 $ perf list
 ```
 
-![](img/perf_list.png)
+![](./img/perf_list.png)
 
 
 ### perf top
@@ -222,14 +222,14 @@ int main() {
 ```
 可以发现红色热点就出现了。右边第一列为各函数的符号，左边第一行是该符号引发的 event 在整个「监视域」中佔的比例，我们称作该符号的热度，监视域指的是 perf 监控的所有符号，默认值包括系统所有程序、核心以及核心 module 的函数，左边第二行则为该符号所在的 Shared Object 。若符号旁显示`[.]`表示其位于 User mode，`[k]`则为 kernel mode。 
 
-![](img/perf_top_while.png)
+![](./img/perf_top_while.png)
 
 （当你关掉该程序之后，这个监视画面 (tui 界面) 里的该程序不会「马上」消失，而是其 overhead 的比例一直减少然后慢慢离开列表）。
 
 按下 `h`可以呼叫 help ，它会列出 perf top 的所有功能和对应按键。
 我们来试看看 Annotate（注解），这功能可以进一步深入分析某个符号。使用方向键移到你有兴趣的符号按下`a`。 它会显示各条指令的 event 取样率（耗时较多的部份就容易被 perf 取样到）。
 
-![](img/perf_top_annotate.png)
+![](./img/perf_top_annotate.png)
 
 
 最后若你想要观察其他 event ( 默认 cycles ) 和指定取样频率 ( 默认每秒4000次 ) :
