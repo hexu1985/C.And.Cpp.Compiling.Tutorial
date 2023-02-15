@@ -338,6 +338,3 @@ $ cat /proc/sys/kernel/perf_event_max_sample_rate
 - [Using the ARM Performance Monitor Unit (PMU) Linux Driver](http://www.carbondesignsystems.com/virtual-prototype-blog/using-the-arm-performance-monitor-unit-pmu-linux-driver)
 - [perf 性能分析实例——使用perf优化cache利用率](http://blog.csdn.net/trochiluses/article/details/17346803) [CSDN]
 
-
-## 资料整理
-李诏远(2015.10)
