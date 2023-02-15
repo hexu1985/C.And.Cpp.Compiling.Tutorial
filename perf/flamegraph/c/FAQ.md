@@ -47,3 +47,25 @@ To make this setting permanent, edit /etc/sysctl.conf too, e.g.:
 ```
 $ sudo sh -c " echo -1 > /proc/sys/kernel/perf_event_paranoid"
 ```
+
+- 执行`perf record -F 99 -g ./sched 5000 100`  报如下错误:
+```
+WARNING: Kernel address maps (/proc/{kallsyms,modules}) are restricted,
+check /proc/sys/kernel/kptr_restrict and /proc/sys/kernel/perf_event_paranoid.
+
+Samples in kernel functions may not be resolved if a suitable vmlinux
+file is not found in the buildid cache or in the vmlinux path.
+
+Samples in kernel modules won't be resolved at all.
+
+If some relocation was applied (e.g. kexec) symbols may be misresolved
+even with a suitable vmlinux or kallsyms file.
+
+Couldn't record kernel reference relocation symbol
+Symbol resolution may be skewed if relocation was used (e.g. kexec).
+Check /proc/kallsyms permission or run as root.
+```
+执行如下命令:
+```
+$ sudo sh -c " echo 0 > /proc/sys/kernel/kptr_restrict"
+```
